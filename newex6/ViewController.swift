@@ -129,18 +129,18 @@ class ViewController: UIViewController
 
                         self.deleteSubView(with: iterView, index: index)
 
-                        if let nextView: UIView = getViewByIndex(index + 1)
-                        {
-                            self.moveBackwards(with: nextView)
-                        }
+//                        if let nextView: UIView = getViewByIndex(index + 1)
+//                        {
+//                            self.moveBackwards(with: nextView)
+//                        }
 
                         let prevIndex: Int = index - 1 < 1 ? 1 : index - 1
                         print("prevIndex is \(prevIndex)")
 
-                        if let prevView = getViewByIndex(prevIndex)
-                        {
-                            self.moveForwards(with: prevView)
-                        }
+//                        if let prevView = getViewByIndex(prevIndex)
+//                        {
+//                            self.moveForwards(with: prevView)
+//                        }
 
                         self.adjustXAnchorForSubviews()
 
@@ -167,17 +167,17 @@ class ViewController: UIViewController
                     {
                         print("you tapped box number \(index)")
 
-                        if let firstView: UIView = getViewByIndex(1)
-                        {
-                            self.moveBackwards(with: firstView)
-                        }
+//                        if let firstView: UIView = getViewByIndex(1)
+//                        {
+////                            self.moveBackwards(with: firstView)
+//                        }
 
-                        if let nextView: UIView = getViewByIndex(index + 1)
-                        {
-                            self.moveForwards(with: nextView)
-
-
-                        }
+//                        if let nextView: UIView = getViewByIndex(index + 1)
+//                        {
+////                            self.moveForwards(with: nextView)
+//
+//
+//                        }
                         let prevIndex: Int = index - 1 < 1 ? 1 : index - 1
                         print("prevIndex is \(prevIndex)")
                         if let prevView = getViewByIndex(prevIndex)
@@ -212,36 +212,36 @@ class ViewController: UIViewController
     }
 
 
-    // moves forward for the animation
-    func moveForwards(with myView: UIView, by amount: Int = 40)
-    {
-
-        if let constraintsArray: [NSLayoutConstraint] = viewsToConstraintsDict[myView]
-        {
-            let const: NSLayoutConstraint = constraintsArray[0]
-            const.constant += CGFloat(amount)
-        }
-
-        UIView.animate(withDuration: 1.2, delay: 0.5, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-
-    }
-
-
-    // moves backwards for the animation
-    func moveBackwards(with myView: UIView, by amount: Int = 40)
-    {
-        if let constraintsArray: [NSLayoutConstraint] = viewsToConstraintsDict[myView]
-        {
-            let const: NSLayoutConstraint = constraintsArray[0]
-            const.constant -= CGFloat(amount)
-        }
-
-        UIView.animate(withDuration: 1.2, delay: 0.5, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
+//    // moves forward for the animation
+//    func moveForwards(with myView: UIView, by amount: Int = 40)
+//    {
+//
+//        if let constraintsArray: [NSLayoutConstraint] = viewsToConstraintsDict[myView] /
+//        {
+//            let const: NSLayoutConstraint = constraintsArray[0]
+//            const.constant += CGFloat(amount)
+//        }
+//
+//        UIView.animate(withDuration: 1.2, delay: 0.5, options: .curveEaseOut, animations: {
+//            self.view.layoutIfNeeded()
+//        }, completion: nil)
+//
+//    }
+//
+//
+//    // moves backwards for the animation
+//    func moveBackwards(with myView: UIView, by amount: Int = 40)
+//    {
+//        if let constraintsArray: [NSLayoutConstraint] = viewsToConstraintsDict[myView]
+//        {
+//            let const: NSLayoutConstraint = constraintsArray[0]
+//            const.constant -= CGFloat(amount)
+//        }
+//
+//        UIView.animate(withDuration: 1.2, delay: 0.5, options: .curveEaseOut, animations: {
+//            self.view.layoutIfNeeded()
+//        }, completion: nil)
+//    }
 
 
     func createNewSubView(at position: Int, anchorWith prevView: UIView)

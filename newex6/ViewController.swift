@@ -288,33 +288,36 @@ class ViewController: UIViewController
     func adjustXAnchorForSubviews()
     {
 
-        self.deactivateAndDeleteAllXConstraints()
-
-        if let prevView: UIView = getViewByIndex(1)
+        if viewToPositionDict.count > 0
         {
-            let conX: NSLayoutConstraint = prevView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
-            NSLayoutConstraint.activate([conX])
-            viewsToConstraintsDict[prevView] = [conX]
-        }
+            self.deactivateAndDeleteAllXConstraints()
 
-        for i in 2...viewsToConstraintsDict.count + 1
-        {
-            if let currView: UIView = getViewByIndex(i)
+            if let prevView: UIView = getViewByIndex(1)
             {
-                if let prevView: UIView = getViewByIndex(i - 1)
-                {
-                    let conX: NSLayoutConstraint = currView.leadingAnchor.constraint(equalTo: prevView.trailingAnchor, constant: 1)
-                    NSLayoutConstraint.activate([conX])
-                    viewsToConstraintsDict[currView] = [conX]
-                }
+                let conX: NSLayoutConstraint = prevView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+                NSLayoutConstraint.activate([conX])
+                viewsToConstraintsDict[prevView] = [conX]
             }
 
+            for i in 2...viewsToConstraintsDict.count + 1
+            {
+                if let currView: UIView = getViewByIndex(i)
+                {
+                    if let prevView: UIView = getViewByIndex(i - 1)
+                    {
+                        let conX: NSLayoutConstraint = currView.leadingAnchor.constraint(equalTo: prevView.trailingAnchor, constant: 1)
+                        NSLayoutConstraint.activate([conX])
+                        viewsToConstraintsDict[currView] = [conX]
+                    }
+                }
+
+            }
+
+
+            UIView.animate(withDuration: 1.2, delay: 0.1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
         }
-
-
-        UIView.animate(withDuration: 1.2, delay: 0.1, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
 
 
